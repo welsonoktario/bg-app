@@ -18,6 +18,10 @@
         <option value="bing_aerial">Bing Aerial</option>
     </select>
     <div id="map" class="map"></div>
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+    </div>
     <script src="js/app.js"></script>
 </body>
 

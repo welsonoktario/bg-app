@@ -1,4 +1,24 @@
-var textSma = function (feature, resolution) {
+//START POPUP
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
+
+var overlay = new ol.Overlay(({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+        duration: 250
+    }
+}));
+
+closer.onclick = function() {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+//END POPUP
+
+var textSma = function(feature, resolution) {
     return new ol.style.Text({
         textAlign: 'center',
         textBaseline: 'middle',
@@ -10,8 +30,8 @@ var textSma = function (feature, resolution) {
     });
 };
 
-var styleSma = function () {
-    return function (feature, resolution) {
+var styleSma = function() {
+    return function(feature, resolution) {
         var status = feature.get('status');
         if (status == "S") {
             var tmp = new ol.style.Style({
@@ -88,3 +108,24 @@ function pilih_bg(pilih) {
         bing_aerial.setVisible(true);
     }
 };
+
+// on click
+var infoSMA = function(pixel) {
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+        return feature;
+    });
+    if (feature) {
+        if (feature.get('sekolah')) {
+            content.innerHTML = feature.get('sekolah') + ` Link sekolah
+        <br> <a href="https://profilsekolah.dispendik.surabaya.go.id/umum/sekolah.php?j=SMA&npsn=` + feature.get('npns') + `">klik disini</a>`;
+        }
+    }
+};
+
+map.on('singleclick', function(evt) {
+    var coordinate = evt.coordinate;
+    infoSMA(evt.pixel);
+    overlay.setPosition(coordinate);
+});
+
+map.addOverlay(overlay);
