@@ -22,26 +22,142 @@ var textSma = function (feature, resolution) {
 	return new ol.style.Text({
 		textAlign: "center",
 		textBaseline: "middle",
-		font: "14px Verdana",
+		font: "8px Verdana",
 		text: feature.get("sekolah"),
 		fill: new ol.style.Fill({
-			color: "black",
+			color: "#266DD3",
 		}),
 	});
 };
 
 var styleSma = function () {
 	return function (feature, resolution) {
-		var status = feature.get("status");
-		if (status == "S") {
-			var tmp = new ol.style.Style({
-				text: textSma(feature, resolution),
+		var tmp = new ol.style.Style({
+			text: textSma(feature, resolution),
+			image: new ol.style.Icon({
+				anchor: [0.5, 1],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'fraction',
+				src: 'assets/img/sekolah.png'
+			})
+		});
+		return [tmp];
+	};
+};
+
+var textPoi = function (feature, resolution) {
+	var jenis = feature.get('jenis');
+	switch (jenis) {
+		case 1:
+			return new ol.style.Text({
+				textAlign: "center",
+				textBaseline: "middle",
+				font: "8px Verdana",
+				text: feature.get("nama"),
+				fill: new ol.style.Fill({
+					color: "#B4436C",
+				}),
 			});
-		} else if (status == "N") {
-			var tmp = new ol.style.Style({
-				text: textSma(feature, resolution),
+		case 2:
+			return new ol.style.Text({
+				textAlign: "center",
+				textBaseline: "middle",
+				font: "8px Verdana",
+				text: feature.get("nama"),
+				fill: new ol.style.Fill({
+					color: "#D7263D",
+				}),
 			});
+		case 4:
+			return new ol.style.Text({
+				textAlign: "center",
+				textBaseline: "middle",
+				font: "8px Verdana",
+				text: feature.get("nama"),
+				fill: new ol.style.Fill({
+					color: "#0197F6",
+				}),
+			});
+		case 5:
+			return new ol.style.Text({
+				textAlign: "center",
+				textBaseline: "middle",
+				font: "8px Verdana",
+				text: feature.get("nama"),
+				fill: new ol.style.Fill({
+					color: "#4D9078",
+				}),
+			});
+		default:
+			break;
+	}
+};
+
+var stylePoi = function () {
+	return function (feature, resolution) {
+		var jenis = feature.get('jenis');
+		switch (jenis) {
+			case 1:
+				var tmp = new ol.style.Style({
+					text: textPoi(feature, resolution),
+					image: new ol.style.Icon({
+						anchor: [0.5, 1],
+						anchorXUnits: 'fraction',
+						anchorYUnits: 'fraction',
+						src: 'assets/img/mall.png'
+					})
+				});
+				break;
+			case 2:
+				var tmp = new ol.style.Style({
+					text: textPoi(feature, resolution),
+					image: new ol.style.Icon({
+						anchor: [0.5, 1],
+						anchorXUnits: 'fraction',
+						anchorYUnits: 'fraction',
+						src: 'assets/img/restoran.png'
+					})
+				});
+				break;
+			case 4:
+				var tmp = new ol.style.Style({
+					text: textPoi(feature, resolution),
+					image: new ol.style.Icon({
+						anchor: [0.5, 1],
+						anchorXUnits: 'fraction',
+						anchorYUnits: 'fraction',
+						src: 'assets/img/pasar.png'
+					})
+				});
+				break;
+			case 5:
+				var tmp = new ol.style.Style({
+					text: textPoi(feature, resolution),
+					image: new ol.style.Icon({
+						anchor: [0.5, 1],
+						anchorXUnits: 'fraction',
+						anchorYUnits: 'fraction',
+						src: 'assets/img/wisata.png'
+					})
+				});
+				break;
+			default:
+				break;
 		}
+		return [tmp];
+	};
+};
+
+var styleProperty = function () {
+	return function (feature, resolution) {
+		var tmp = new ol.style.Style({
+			image: new ol.style.Icon({
+				anchor: [0.5, 1],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'fraction',
+				src: 'assets/img/property.png'
+			})
+		});
 		return [tmp];
 	};
 };
@@ -54,7 +170,29 @@ var sma = new ol.layer.Vector({
 		url: "assets/sma.geojson",
 	}),
 	visible: true,
-	//style: styleSma()
+	style: styleSma(),
+});
+
+var poi = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		format: new ol.format.GeoJSON({
+			defaultDataProjection: "EPSG:4326",
+		}),
+		url: "http://localhost:8000/api/poi",
+	}),
+	visible: true,
+	style: stylePoi()
+});
+
+var property = new ol.layer.Vector({
+	source: new ol.source.Vector({
+		format: new ol.format.GeoJSON({
+			defaultDataProjection: "EPSG:4326",
+		}),
+		url: "http://localhost:8000/api/property",
+	}),
+	visible: true,
+	style: styleProperty()
 });
 
 var sourceBingMaps = new ol.source.BingMaps({
@@ -86,7 +224,7 @@ var map = new ol.Map({
 		new ol.control.ScaleLine(),
 		new ol.control.OverviewMap(),
 	],
-	layers: [osm, bing_aerial, sma],
+	layers: [osm, bing_aerial, sma, poi, property],
 	view: new ol.View({
 		center: ol.proj.fromLonLat([112.75083, -7.24917]),
 		zoom: 13,
@@ -94,7 +232,6 @@ var map = new ol.Map({
 });
 
 function pilih_bg(pilih) {
-	console.log(pilih);
 	if (pilih == "osm") {
 		osm.setVisible(true);
 		bing_aerial.setVisible(false);
@@ -115,7 +252,7 @@ var infoSMA = function (pixel) {
 			content.innerHTML =
 				feature.get("sekolah") +
 				` Link sekolah
-        <br> <a href="https://profilsekolah.dispendik.surabaya.go.id/umum/sekolah.php?j=SMA&npsn=` +
+				<br> <a href="https://profilsekolah.dispendik.surabaya.go.id/umum/sekolah.php?j=SMA&npsn=` +
 				feature.get("npns") +
 				`">klik disini</a>`;
 		}

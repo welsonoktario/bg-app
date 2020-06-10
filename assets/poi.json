@@ -1,0 +1,340 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.32088,
+				"lon": 112.770181
+			}
+		},
+		"properties": {
+			"nama": "Transmart Rungkut",
+			"id": 1,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.274367,
+				"lon": 112.781971
+			}
+		},
+		"properties": {
+			"nama": "Galaxy Mall",
+			"id": 2,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.289613,
+				"lon": 112.674927
+			}
+		},
+		"properties": {
+			"nama": "Pakuwon Trade Center",
+			"id": 3,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.262432,
+				"lon": 112.739081
+			}
+		},
+		"properties": {
+			"nama": "Tunjungan Plaza",
+			"id": 4,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.28868,
+				"lon": 112.745557
+			}
+		},
+		"properties": {
+			"nama": "Marvel City",
+			"id": 5,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.2912420000000004,
+				"lon": 112.743753
+			}
+		},
+		"properties": {
+			"nama": "Transmart Ngagel",
+			"id": 6,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.2840869999999995,
+				"lon": 112.753419
+			}
+		},
+		"properties": {
+			"nama": "Pucang Anom",
+			"id": 7,
+			"jenis": 4
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.241758,
+				"lon": 112.743979
+			}
+		},
+		"properties": {
+			"nama": "Atom",
+			"id": 8,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.246388,
+				"lon": 112.732493
+			}
+		},
+		"properties": {
+			"nama": "Pasar Turi Grosir",
+			"id": 9,
+			"jenis": 4
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.23945,
+				"lon": 112.749246
+			}
+		},
+		"properties": {
+			"nama": "Kapasan",
+			"id": 10,
+			"jenis": 4
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.23476,
+				"lon": 112.740788
+			}
+		},
+		"properties": {
+			"nama": "Pabean",
+			"id": 11,
+			"jenis": 4
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.274495,
+				"lon": 112.742891
+			}
+		},
+		"properties": {
+			"nama": "Keputran",
+			"id": 12,
+			"jenis": 4
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.318774,
+				"lon": 112.766435
+			}
+		},
+		"properties": {
+			"nama": "Warung Lasida",
+			"id": 13,
+			"jenis": 2
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.265852,
+				"lon": 112.751408
+			}
+		},
+		"properties": {
+			"nama": "Hanamasa Gubeng",
+			"id": 14,
+			"jenis": 2
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.278642,
+				"lon": 112.743061
+			}
+		},
+		"properties": {
+			"nama": "Cocari Keputran",
+			"id": 15,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.3202,
+				"lon": 112.761235
+			}
+		},
+		"properties": {
+			"nama": "Rojo Sambel",
+			"id": 16,
+			"jenis": 2
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.320654,
+				"lon": 112.762186
+			}
+		},
+		"properties": {
+			"nama": "Michael Tj Gelato & Cafe",
+			"id": 17,
+			"jenis": 2
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.316537,
+				"lon": 112.764672
+			}
+		},
+		"properties": {
+			"nama": "Mr Suprek Ubaya",
+			"id": 18,
+			"jenis": 2
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.291397,
+				"lon": 112.739763
+			}
+		},
+		"properties": {
+			"nama": "Taman Bungkul",
+			"id": 19,
+			"jenis": 5
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.294934,
+				"lon": 112.803131
+			}
+		},
+		"properties": {
+			"nama": "Hutan Bambu dan Taman Harmoni Keputih",
+			"id": 20,
+			"jenis": 5
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.312379,
+				"lon": 112.789123
+			}
+		},
+		"properties": {
+			"nama": "Kebun Bibit Wonorejo",
+			"id": 21,
+			"jenis": 5
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.261454,
+				"lon": 112.742777
+			}
+		},
+		"properties": {
+			"nama": "Taman Prestasi",
+			"id": 22,
+			"jenis": 5
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.249478,
+				"lon": 112.800486
+			}
+		},
+		"properties": {
+			"nama": "Pantai Ria Kenjeran Park",
+			"id": 23,
+			"jenis": 1
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": {
+				"lat": -7.307551,
+				"lon": 112.82196
+			}
+		},
+		"properties": {
+			"nama": "Ekowisata Mangrove",
+			"id": 24,
+			"jenis": 5
+		}
+	}]
+}
