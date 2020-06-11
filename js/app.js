@@ -36,17 +36,17 @@ var styleSma = function () {
 			text: textSma(feature, resolution),
 			image: new ol.style.Icon({
 				anchor: [0.5, 1],
-				anchorXUnits: 'fraction',
-				anchorYUnits: 'fraction',
-				src: 'assets/img/sekolah.png'
-			})
+				anchorXUnits: "fraction",
+				anchorYUnits: "fraction",
+				src: "assets/img/sekolah.png",
+			}),
 		});
 		return [tmp];
 	};
 };
 
 var textPoi = function (feature, resolution) {
-	var jenis = feature.get('jenis');
+	var jenis = feature.get("jenis");
 	switch (jenis) {
 		case 1:
 			return new ol.style.Text({
@@ -95,17 +95,17 @@ var textPoi = function (feature, resolution) {
 
 var stylePoi = function () {
 	return function (feature, resolution) {
-		var jenis = feature.get('jenis');
+		var jenis = feature.get("jenis");
 		switch (jenis) {
 			case 1:
 				var tmp = new ol.style.Style({
 					text: textPoi(feature, resolution),
 					image: new ol.style.Icon({
 						anchor: [0.5, 1],
-						anchorXUnits: 'fraction',
-						anchorYUnits: 'fraction',
-						src: 'assets/img/mall.png'
-					})
+						anchorXUnits: "fraction",
+						anchorYUnits: "fraction",
+						src: "assets/img/mall.png",
+					}),
 				});
 				break;
 			case 2:
@@ -113,10 +113,10 @@ var stylePoi = function () {
 					text: textPoi(feature, resolution),
 					image: new ol.style.Icon({
 						anchor: [0.5, 1],
-						anchorXUnits: 'fraction',
-						anchorYUnits: 'fraction',
-						src: 'assets/img/restoran.png'
-					})
+						anchorXUnits: "fraction",
+						anchorYUnits: "fraction",
+						src: "assets/img/restoran.png",
+					}),
 				});
 				break;
 			case 4:
@@ -124,10 +124,10 @@ var stylePoi = function () {
 					text: textPoi(feature, resolution),
 					image: new ol.style.Icon({
 						anchor: [0.5, 1],
-						anchorXUnits: 'fraction',
-						anchorYUnits: 'fraction',
-						src: 'assets/img/pasar.png'
-					})
+						anchorXUnits: "fraction",
+						anchorYUnits: "fraction",
+						src: "assets/img/pasar.png",
+					}),
 				});
 				break;
 			case 5:
@@ -135,10 +135,10 @@ var stylePoi = function () {
 					text: textPoi(feature, resolution),
 					image: new ol.style.Icon({
 						anchor: [0.5, 1],
-						anchorXUnits: 'fraction',
-						anchorYUnits: 'fraction',
-						src: 'assets/img/wisata.png'
-					})
+						anchorXUnits: "fraction",
+						anchorYUnits: "fraction",
+						src: "assets/img/wisata.png",
+					}),
 				});
 				break;
 			default:
@@ -153,10 +153,10 @@ var styleProperty = function () {
 		var tmp = new ol.style.Style({
 			image: new ol.style.Icon({
 				anchor: [0.5, 1],
-				anchorXUnits: 'fraction',
-				anchorYUnits: 'fraction',
-				src: 'assets/img/property.png'
-			})
+				anchorXUnits: "fraction",
+				anchorYUnits: "fraction",
+				src: "assets/img/property.png",
+			}),
 		});
 		return [tmp];
 	};
@@ -181,7 +181,7 @@ var poi = new ol.layer.Vector({
 		url: "http://localhost:8000/api/poi",
 	}),
 	visible: true,
-	style: stylePoi()
+	style: stylePoi(),
 });
 
 var property = new ol.layer.Vector({
@@ -192,7 +192,7 @@ var property = new ol.layer.Vector({
 		url: "http://localhost:8000/api/property",
 	}),
 	visible: true,
-	style: styleProperty()
+	style: styleProperty(),
 });
 
 var sourceBingMaps = new ol.source.BingMaps({
@@ -243,25 +243,48 @@ function pilih_bg(pilih) {
 }
 
 // on click
-var infoSMA = function (pixel) {
+var infoProperty = function (pixel) {
 	var feature = map.forEachFeatureAtPixel(pixel, function (feature) {
 		return feature;
 	});
 	if (feature) {
-		if (feature.get("sekolah")) {
-			content.innerHTML =
-				feature.get("sekolah") +
-				` Link sekolah
-				<br> <a href="https://profilsekolah.dispendik.surabaya.go.id/umum/sekolah.php?j=SMA&npsn=` +
-				feature.get("npns") +
-				`">klik disini</a>`;
+		if (feature.get("harga")) {
+			var jenis = "";
+			switch (feature.get("jenis")) {
+				case 1:
+					jenis = "Rumah";
+					break;
+				case 2:
+					jenis = "Ruko";
+					break;
+				case 3:
+					jenis = "Gudang";
+					break;
+				case 4:
+					jenis = "Kantor";
+					break;
+				case 5:
+					jenis = "Tanah";
+					break;
+				default:
+					break;
+			}
+			content.innerHTML = `
+				<div>Jenis: ${jenis}</div>
+				<div>Harga: ${feature.get("harga")}</div>
+				<div>Luas Bangunan: ${feature.get("lb")}</div>
+				<div>Luas Tanah: ${feature.get("lt")}</div>
+				<div class="text-center mt-2 bg-grey-100"><a href="detail?id=${feature.get(
+					"id"
+				)}">Detail</a></div>
+			`;
 		}
 	}
 };
 
 map.on("singleclick", function (evt) {
 	var coordinate = evt.coordinate;
-	infoSMA(evt.pixel);
+	infoProperty(evt.pixel);
 	overlay.setPosition(coordinate);
 });
 
